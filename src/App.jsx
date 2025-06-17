@@ -4,6 +4,7 @@ import MovieDetail from './components/MovieDetail';
 import { Route, Routes } from 'react-router-dom';
 import MovieList from './components/MovieList';
 import Layout from './components/Layout';
+import Home from './components/Home';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -47,7 +48,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<MovieList movies={movies} />} />
+          <Route index element={<Home movies={movies} />} />
           <Route
             path="/detail"
             element={<MovieDetail detail={movieDetails} />}

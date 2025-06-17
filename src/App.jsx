@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col items-center">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home movies={movies} />} />
@@ -55,7 +55,7 @@ function App() {
           />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 

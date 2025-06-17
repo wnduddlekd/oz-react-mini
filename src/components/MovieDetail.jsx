@@ -1,7 +1,10 @@
 export default function MovieDetail({ detail }) {
   if (!detail || !detail.poster) return null;
   return (
-    <div key={detail.id} className="flex ">
+    <div
+      key={detail.id}
+      className="flex mt-16 p-4 border border-gray-300 w-[800px]"
+    >
       <img src={detail.poster} className="w-96" />
       <div className="flex flex-col gap-4 p-8 w-96">
         <div className="flex justify-between">

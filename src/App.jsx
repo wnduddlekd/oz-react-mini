@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import MovieCard from './components/MovieCard';
 import MovieDetail from './components/MovieDetail';
+import { Route, Routes } from 'react-router-dom';
+import MovieList from './components/MovieList';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -18,7 +19,6 @@ function App() {
           score: movie.vote_average,
           poster: BASE_URL + movie.poster_path,
         }));
-        console.log(moviesData);
         setMovies(moviesData);
       })
       .catch((err) => console.error(err));
@@ -37,23 +37,16 @@ function App() {
           genres: data.genres,
           overview: data.overview,
         };
-        console.log(movieDetailsData);
         setMovieDetails(movieDetailsData);
       })
       .catch((err) => console.error(err));
   }, []);
 
   return (
-    <>
-      <div className="flex flex-wrap gap-4 p-4">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
-      <div>
-        <MovieDetail detail={movieDetails} />
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<MovieList movies={movies} />} />
+      <Route path="/detail" element={<MovieDetail detail={movieDetails} />} />
+    </Routes>
   );
 }
 

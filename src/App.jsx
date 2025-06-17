@@ -3,6 +3,7 @@ import './App.css';
 import MovieDetail from './components/MovieDetail';
 import { Route, Routes } from 'react-router-dom';
 import MovieList from './components/MovieList';
+import Layout from './components/Layout';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -43,10 +44,17 @@ function App() {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<MovieList movies={movies} />} />
-      <Route path="/detail" element={<MovieDetail detail={movieDetails} />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<MovieList movies={movies} />} />
+          <Route
+            path="/detail"
+            element={<MovieDetail detail={movieDetails} />}
+          />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

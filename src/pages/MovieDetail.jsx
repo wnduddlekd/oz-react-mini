@@ -1,4 +1,27 @@
-export default function MovieDetail({ detail }) {
+import { useEffect, useState } from 'react';
+
+export default function MovieDetail() {
+  const [detail, setDetail] = useState();
+  const BASE_URL = 'https://image.tmdb.org/t/p/w500';
+
+  useEffect(() => {
+    fetch('../data/movieDetailData.json')
+      .then((res) => res.json())
+      .then((data) => {
+        const movieDetailsData = {
+          id: data.id,
+          title: data.title,
+          score: data.vote_average,
+          poster: BASE_URL + data.poster_path,
+          backdrop: BASE_URL + data.backdrop_path,
+          genres: data.genres,
+          overview: data.overview,
+        };
+        setDetail(movieDetailsData);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   if (!detail || !detail.poster) return null;
   return (
     <div

@@ -1,5 +1,5 @@
-import MovieList from './MovieList';
-import MovieSlide from './MovieSlide';
+import MovieList from '@/components/MovieList';
+import MovieSlide from '@/components/MovieSlide';
 
 export default function Home({ movies }) {
   return (

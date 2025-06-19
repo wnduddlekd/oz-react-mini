@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchMovieDetail } from '@/api/tmdbDetailApi';
 
 export default function MovieDetail() {
-  const [detail, setDetail] = useState();
+  const [detail, setDetail] = useState(null);
   const BASE_URL = 'https://image.tmdb.org/t/p/w500';
+  const { id } = useParams();
+  console.log('id:', id);
 
   useEffect(() => {
-    fetch('../data/movieDetailData.json')
-      .then((res) => res.json())
+    fetchMovieDetail(id)
       .then((data) => {
         const movieDetailsData = {
           id: data.id,
@@ -18,11 +21,13 @@ export default function MovieDetail() {
           overview: data.overview,
         };
         setDetail(movieDetailsData);
+        console.log(movieDetailsData);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [id]);
 
-  if (!detail || !detail.poster) return null;
+  if (!detail || !detail.poster)
+    return <p className="mt-5">detail 페이지 불러오는중 . . .</p>;
   return (
     <div
       key={detail.id}

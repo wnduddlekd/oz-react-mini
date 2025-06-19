@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieDetail } from '@/api/tmdbDetailApi';
+import { IMG_BASE_URL } from '../api/constants';
 
 export default function MovieDetail() {
   const [detail, setDetail] = useState(null);
-  const BASE_URL = 'https://image.tmdb.org/t/p/w500';
   const { id } = useParams();
   console.log('id:', id);
 
@@ -15,8 +15,8 @@ export default function MovieDetail() {
           id: data.id,
           title: data.title,
           score: data.vote_average,
-          poster: BASE_URL + data.poster_path,
-          backdrop: BASE_URL + data.backdrop_path,
+          poster: IMG_BASE_URL + data.poster_path,
+          backdrop: IMG_BASE_URL + data.backdrop_path,
           genres: data.genres,
           overview: data.overview,
         };

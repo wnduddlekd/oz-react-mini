@@ -1,12 +1,15 @@
 const token = import.meta.env.VITE_TMDB_TOKEN;
 
 export async function fetchMovieDetail(id) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  });
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=ko-KR`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 
   const data = await res.json();
 

@@ -19,6 +19,10 @@ export default function MovieDetail() {
           backdrop: IMG_BASE_URL + data.backdrop_path,
           genres: data.genres,
           overview: data.overview,
+          runtime: data.runtime,
+          release_date: data.release_date,
+          tagline: data.tagline,
+          homepage: data.homepage,
         };
         setDetail(movieDetailsData);
         console.log(movieDetailsData);

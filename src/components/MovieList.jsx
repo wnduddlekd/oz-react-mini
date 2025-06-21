@@ -1,8 +1,9 @@
-import { getRegExp } from 'korean-regexp';
 import MovieCard from './MovieCard';
-import { useSearch } from './SearchContext';
+/* import { useSearch } from './SearchContext';
+import { getRegExp } from 'korean-regexp'; */
 
-export default function MovieList({ movies }) {
+export default function MovieList({ movies, searchParams }) {
+  /*
   const { searchTerm } = useSearch();
 
   const filterMovie = searchTerm
@@ -10,6 +11,10 @@ export default function MovieList({ movies }) {
         const regex = getRegExp(searchTerm);
         return regex.test(movie.title);
       })
+    : movies;
+    */
+  const filterMovie = searchParams
+    ? movies.filter((movie) => movie.title.includes(searchParams))
     : movies;
 
   return (

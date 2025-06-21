@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { fetchMovie } from '../api/tmdbApi';
 import { IMG_BASE_URL } from '../api/constants';
 
-export default function Home() {
+export default function Home({ searchParams }) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <>
-      <MovieList movies={movies} />
+      <MovieList movies={movies} searchParams={searchParams} />
       <MovieSlide movies={movies} />
     </>
   );
